@@ -82,7 +82,7 @@ data "template_file" "user_data" {
 resource "aws_instance" "ec2_public1a" {
     ami                    = var.ec2_ami
     instance_type          = "t2.micro"
-    subnet_id              = var.sn_vpc10_pub1a
+    subnet_id              = var.sn_vpc_pub1a
     vpc_security_group_ids = [aws_security_group.sg_public.id]
     key_name               = "vockey"
     user_data              = base64encode(data.template_file.user_data.rendered)
@@ -100,7 +100,7 @@ resource "aws_instance" "ec2_public2a" {
 resource "aws_instance" "ec2_public1b" {
     ami                    = var.ec2_ami
     instance_type          = "t2.micro"
-    subnet_id              = var.sn_vpc10_pub1b
+    subnet_id              = var.sn_vpc_pub1b
     vpc_security_group_ids = [aws_security_group.sg_public.id]
     key_name               = "vockey"
     user_data              = base64encode(data.template_file.user_data.rendered)
