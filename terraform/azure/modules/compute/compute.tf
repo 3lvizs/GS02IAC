@@ -65,20 +65,25 @@ resource "azurerm_virtual_machine" "vm01_public" {
         admin_password = "Password1234!" 
         custom_data    = <<-EOF
          #!/bin/bash
-            sudo apt-get update
-            sudo apt-get install -y python3 python3-pip
-            pip3 install flask
-             cat << 'EOF2' > /home/ubuntu/app.py
-            from flask import Flask
-             app = Flask(__name__)
-             @app.route('/')
-             def home():
-            return "Hello, Azure from Flask!"
-             if __name__ == '__main__':
-          app.run(host='0.0.0.0', port=5000)
-          EOF2
-          nohup python3 /home/ubuntu/app.py &
-        EOF 
+            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+            apt-get update -y
+            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+
+            echo "Desplegando app PHP info"
+            cd /tmp
+            git clone https://github.com/kledsonhugo/app-dynamicsite
+            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+
+            echo "Configurando Apache WebServer"
+            usermod -a -G www-data ubuntu
+            chown -R ubuntu:www-data /var/www
+            chmod 2775 /var/www
+            find /var/www -type d -exec chmod 2775 {} \;
+            find /var/www -type f -exec chmod 0664 {} \;
+
+            echo "Iniciando Apache WebServer"
+            systemctl enable apache2
+            service apache2 restart
     }
     os_profile_linux_config {
         disable_password_authentication = false
@@ -130,21 +135,26 @@ resource "azurerm_virtual_machine" "vm02_public" {
         admin_username = "azureuser"
         admin_password = "Password1234!" 
         custom_data    = <<-EOF
-         #!/bin/bash
-            sudo apt-get update
-            sudo apt-get install -y python3 python3-pip
-            pip3 install flask
-             cat << 'EOF2' > /home/ubuntu/app.py
-            from flask import Flask
-             app = Flask(__name__)
-             @app.route('/')
-             def home():
-            return "Hello, Azure from Flask!"
-             if __name__ == '__main__':
-          app.run(host='0.0.0.0', port=5000)
-          EOF2
-          nohup python3 /home/ubuntu/app.py &
-        EOF 
+          #!/bin/bash
+            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+            apt-get update -y
+            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+
+            echo "Desplegando app PHP info"
+            cd /tmp
+            git clone https://github.com/kledsonhugo/app-dynamicsite
+            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+
+            echo "Configurando Apache WebServer"
+            usermod -a -G www-data ubuntu
+            chown -R ubuntu:www-data /var/www
+            chmod 2775 /var/www
+            find /var/www -type d -exec chmod 2775 {} \;
+            find /var/www -type f -exec chmod 0664 {} \;
+
+            echo "Iniciando Apache WebServer"
+            systemctl enable apache2
+            service apache2 restart
     }
     os_profile_linux_config {
         disable_password_authentication = false
@@ -196,21 +206,26 @@ resource "azurerm_virtual_machine" "vm03_public" {
         admin_username = "azureuser"
         admin_password = "Password1234!" 
         custom_data    = <<-EOF
-         #!/bin/bash
-            sudo apt-get update
-            sudo apt-get install -y python3 python3-pip
-            pip3 install flask
-             cat << 'EOF2' > /home/ubuntu/app.py
-            from flask import Flask
-             app = Flask(__name__)
-             @app.route('/')
-             def home():
-            return "Hello, Azure from Flask!"
-             if __name__ == '__main__':
-          app.run(host='0.0.0.0', port=5000)
-          EOF2
-          nohup python3 /home/ubuntu/app.py &
-        EOF 
+          #!/bin/bash
+            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+            apt-get update -y
+            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+
+            echo "Desplegando app PHP info"
+            cd /tmp
+            git clone https://github.com/kledsonhugo/app-dynamicsite
+            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+
+            echo "Configurando Apache WebServer"
+            usermod -a -G www-data ubuntu
+            chown -R ubuntu:www-data /var/www
+            chmod 2775 /var/www
+            find /var/www -type d -exec chmod 2775 {} \;
+            find /var/www -type f -exec chmod 0664 {} \;
+
+            echo "Iniciando Apache WebServer"
+            systemctl enable apache2
+            service apache2 restart
     }
     os_profile_linux_config {
         disable_password_authentication = false
@@ -262,21 +277,26 @@ resource "azurerm_virtual_machine" "vm04_public" {
         admin_username = "azureuser"
         admin_password = "Password1234!" 
         custom_data    = <<-EOF
-         #!/bin/bash
-            sudo apt-get update
-            sudo apt-get install -y python3 python3-pip
-            pip3 install flask
-             cat << 'EOF2' > /home/ubuntu/app.py
-            from flask import Flask
-             app = Flask(__name__)
-             @app.route('/')
-             def home():
-            return "Hello, Azure from Flask!"
-             if __name__ == '__main__':
-          app.run(host='0.0.0.0', port=5000)
-          EOF2
-          nohup python3 /home/ubuntu/app.py &
-        EOF 
+          #!/bin/bash
+            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+            apt-get update -y
+            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+
+            echo "Desplegando app PHP info"
+            cd /tmp
+            git clone https://github.com/kledsonhugo/app-dynamicsite
+            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+
+            echo "Configurando Apache WebServer"
+            usermod -a -G www-data ubuntu
+            chown -R ubuntu:www-data /var/www
+            chmod 2775 /var/www
+            find /var/www -type d -exec chmod 2775 {} \;
+            find /var/www -type f -exec chmod 0664 {} \;
+
+            echo "Iniciando Apache WebServer"
+            systemctl enable apache2
+            service apache2 restart
     }
     os_profile_linux_config {
         disable_password_authentication = false

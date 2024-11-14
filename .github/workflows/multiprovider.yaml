@@ -50,9 +50,9 @@ jobs:
     - run: terraform -chdir=./terraform/aws validate
     # - run : pip3 install checkov
     # - run : checkov --directory ./terraform
-    # - run: terraform -chdir=./terraform/aws plan -out tfplan
-    # - run: terraform -chdir=./terraform/aws apply tfplan
-    # - run: terraform -chdir=./terraform/aws show
+    - run: terraform -chdir=./terraform/aws plan -out tfplan
+    - run: terraform -chdir=./terraform/aws apply tfplan
+    - run: terraform -chdir=./terraform/aws show
   cd-azure:
     name: Deploy on Azure
     needs: ci-test
@@ -66,8 +66,8 @@ jobs:
     - run: terraform -chdir=./terraform/azure validate
     # - run : pip3 install checkov
     # - run : checkov --directory ./terraform
-    # - run: terraform -chdir=./terraform/azure plan -out tfplan
-    # - run: terraform -chdir=./terraform/azure apply tfplan
-    # - run: terraform -chdir=./terraform/azure show
+    - run: terraform -chdir=./terraform/azure plan -out tfplan
+    - run: terraform -chdir=./terraform/azure apply tfplan
+    - run: terraform -chdir=./terraform/azure show
     
 
