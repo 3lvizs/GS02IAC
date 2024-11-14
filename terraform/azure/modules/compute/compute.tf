@@ -46,7 +46,7 @@ resource "azurerm_virtual_machine" "vm01_public" {
     location            = var.rglocation
     resource_group_name = var.rgname
     network_interface_ids         = [azurerm_network_interface.vm01_nic_public.id]
-    vm_size                       = "Standard_B2s"
+    vm_size                       = "Standard_D2s_v3"
     delete_os_disk_on_termination = true
     storage_image_reference {
         publisher = "Canonical"
@@ -119,7 +119,7 @@ resource "azurerm_virtual_machine" "vm03_public" {
     location            = var.rglocation
     resource_group_name = var.rgname
     network_interface_ids         = [azurerm_network_interface.vm03_nic_public.id]
-    vm_size                       = "Standard_B2s"
+    vm_size                       = "Standard_D2s_v3"
     delete_os_disk_on_termination = true
     storage_image_reference {
         publisher = "Canonical"
