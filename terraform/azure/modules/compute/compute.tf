@@ -60,7 +60,7 @@ resource "azurerm_virtual_machine" "vm01_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-    computer_name  = "vm04-public"
+    computer_name  = "vm01-public"
     admin_username = "azureuser"
     admin_password = "Password1234!" 
     custom_data    = <<-EOF
@@ -90,7 +90,7 @@ resource "azurerm_virtual_machine" "vm01_public" {
 os_profile_linux_config {
     disable_password_authentication = false
 }
-
+}
 
 #vm2 publica
 
@@ -133,7 +133,7 @@ resource "azurerm_virtual_machine" "vm02_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-    computer_name  = "vm04-public"
+    computer_name  = "vm02-public"
     admin_username = "azureuser"
     admin_password = "Password1234!" 
     custom_data    = <<-EOF
@@ -162,6 +162,7 @@ resource "azurerm_virtual_machine" "vm02_public" {
 
 os_profile_linux_config {
     disable_password_authentication = false
+}
 }
 
 
@@ -206,7 +207,7 @@ resource "azurerm_virtual_machine" "vm03_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-    computer_name  = "vm04-public"
+    computer_name  = "vm03-public"
     admin_username = "azureuser"
     admin_password = "Password1234!" 
     custom_data    = <<-EOF
@@ -235,6 +236,7 @@ resource "azurerm_virtual_machine" "vm03_public" {
 
 os_profile_linux_config {
     disable_password_authentication = false
+}
 }
 
 
@@ -308,6 +310,7 @@ resource "azurerm_virtual_machine" "vm04_public" {
 
 os_profile_linux_config {
     disable_password_authentication = false
+}
 }
 
 
