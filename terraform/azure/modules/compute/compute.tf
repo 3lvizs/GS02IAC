@@ -60,35 +60,37 @@ resource "azurerm_virtual_machine" "vm01_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-        computer_name  = "vm01-public"
-        admin_username = "azureuser"
-        admin_password = "Password1234!" 
-        custom_data    = <<-EOF
-         #!/bin/bash
-            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
-            apt-get update -y
-            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+    computer_name  = "vm04-public"
+    admin_username = "azureuser"
+    admin_password = "Password1234!" 
+    custom_data    = <<-EOF
+        #!/bin/bash
+        echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+        apt-get update -y
+        apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
 
-            echo "Desplegando app PHP info"
-            cd /tmp
-            git clone https://github.com/kledsonhugo/app-dynamicsite
-            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+        echo "Desplegando app PHP info"
+        cd /tmp
+        git clone https://github.com/kledsonhugo/app-dynamicsite
+        cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
 
-            echo "Configurando Apache WebServer"
-            usermod -a -G www-data ubuntu
-            chown -R ubuntu:www-data /var/www
-            chmod 2775 /var/www
-            find /var/www -type d -exec chmod 2775 {} \;
-            find /var/www -type f -exec chmod 0664 {} \;
+        echo "Configurando Apache WebServer"
+        usermod -a -G www-data ubuntu
+        chown -R ubuntu:www-data /var/www
+        chmod 2775 /var/www
+        find /var/www -type d -exec chmod 2775 {} \;
+        find /var/www -type f -exec chmod 0664 {} \;
 
-            echo "Iniciando Apache WebServer"
-            systemctl enable apache2
-            service apache2 restart
-    }
-    os_profile_linux_config {
-        disable_password_authentication = false
-    }
+        echo "Iniciando Apache WebServer"
+        systemctl enable apache2
+        service apache2 restart
+    EOF
 }
+
+os_profile_linux_config {
+    disable_password_authentication = false
+}
+
 
 #vm2 publica
 
@@ -131,35 +133,37 @@ resource "azurerm_virtual_machine" "vm02_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-        computer_name  = "vm02-public"
-        admin_username = "azureuser"
-        admin_password = "Password1234!" 
-        custom_data    = <<-EOF
-          #!/bin/bash
-            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
-            apt-get update -y
-            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+    computer_name  = "vm04-public"
+    admin_username = "azureuser"
+    admin_password = "Password1234!" 
+    custom_data    = <<-EOF
+        #!/bin/bash
+        echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+        apt-get update -y
+        apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
 
-            echo "Desplegando app PHP info"
-            cd /tmp
-            git clone https://github.com/kledsonhugo/app-dynamicsite
-            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+        echo "Desplegando app PHP info"
+        cd /tmp
+        git clone https://github.com/kledsonhugo/app-dynamicsite
+        cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
 
-            echo "Configurando Apache WebServer"
-            usermod -a -G www-data ubuntu
-            chown -R ubuntu:www-data /var/www
-            chmod 2775 /var/www
-            find /var/www -type d -exec chmod 2775 {} \;
-            find /var/www -type f -exec chmod 0664 {} \;
+        echo "Configurando Apache WebServer"
+        usermod -a -G www-data ubuntu
+        chown -R ubuntu:www-data /var/www
+        chmod 2775 /var/www
+        find /var/www -type d -exec chmod 2775 {} \;
+        find /var/www -type f -exec chmod 0664 {} \;
 
-            echo "Iniciando Apache WebServer"
-            systemctl enable apache2
-            service apache2 restart
-    }
-    os_profile_linux_config {
-        disable_password_authentication = false
-    }
+        echo "Iniciando Apache WebServer"
+        systemctl enable apache2
+        service apache2 restart
+    EOF
 }
+
+os_profile_linux_config {
+    disable_password_authentication = false
+}
+
 
 #vm3 publica
 
@@ -202,35 +206,37 @@ resource "azurerm_virtual_machine" "vm03_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-        computer_name  = "vm03-public"
-        admin_username = "azureuser"
-        admin_password = "Password1234!" 
-        custom_data    = <<-EOF
-          #!/bin/bash
-            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
-            apt-get update -y
-            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+    computer_name  = "vm04-public"
+    admin_username = "azureuser"
+    admin_password = "Password1234!" 
+    custom_data    = <<-EOF
+        #!/bin/bash
+        echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+        apt-get update -y
+        apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
 
-            echo "Desplegando app PHP info"
-            cd /tmp
-            git clone https://github.com/kledsonhugo/app-dynamicsite
-            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+        echo "Desplegando app PHP info"
+        cd /tmp
+        git clone https://github.com/kledsonhugo/app-dynamicsite
+        cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
 
-            echo "Configurando Apache WebServer"
-            usermod -a -G www-data ubuntu
-            chown -R ubuntu:www-data /var/www
-            chmod 2775 /var/www
-            find /var/www -type d -exec chmod 2775 {} \;
-            find /var/www -type f -exec chmod 0664 {} \;
+        echo "Configurando Apache WebServer"
+        usermod -a -G www-data ubuntu
+        chown -R ubuntu:www-data /var/www
+        chmod 2775 /var/www
+        find /var/www -type d -exec chmod 2775 {} \;
+        find /var/www -type f -exec chmod 0664 {} \;
 
-            echo "Iniciando Apache WebServer"
-            systemctl enable apache2
-            service apache2 restart
-    }
-    os_profile_linux_config {
-        disable_password_authentication = false
-    }
+        echo "Iniciando Apache WebServer"
+        systemctl enable apache2
+        service apache2 restart
+    EOF
 }
+
+os_profile_linux_config {
+    disable_password_authentication = false
+}
+
 
 #vm4 publica
 
@@ -273,35 +279,37 @@ resource "azurerm_virtual_machine" "vm04_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-        computer_name  = "vm04-public"
-        admin_username = "azureuser"
-        admin_password = "Password1234!" 
-        custom_data    = <<-EOF
-          #!/bin/bash
-            echo "Atualizando/Instalando pacotes necessários do sistema operacional"
-            apt-get update -y
-            apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
+    computer_name  = "vm04-public"
+    admin_username = "azureuser"
+    admin_password = "Password1234!" 
+    custom_data    = <<-EOF
+        #!/bin/bash
+        echo "Atualizando/Instalando pacotes necessários do sistema operacional"
+        apt-get update -y
+        apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
 
-            echo "Desplegando app PHP info"
-            cd /tmp
-            git clone https://github.com/kledsonhugo/app-dynamicsite
-            cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+        echo "Desplegando app PHP info"
+        cd /tmp
+        git clone https://github.com/kledsonhugo/app-dynamicsite
+        cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
 
-            echo "Configurando Apache WebServer"
-            usermod -a -G www-data ubuntu
-            chown -R ubuntu:www-data /var/www
-            chmod 2775 /var/www
-            find /var/www -type d -exec chmod 2775 {} \;
-            find /var/www -type f -exec chmod 0664 {} \;
+        echo "Configurando Apache WebServer"
+        usermod -a -G www-data ubuntu
+        chown -R ubuntu:www-data /var/www
+        chmod 2775 /var/www
+        find /var/www -type d -exec chmod 2775 {} \;
+        find /var/www -type f -exec chmod 0664 {} \;
 
-            echo "Iniciando Apache WebServer"
-            systemctl enable apache2
-            service apache2 restart
-    }
-    os_profile_linux_config {
-        disable_password_authentication = false
-    }
+        echo "Iniciando Apache WebServer"
+        systemctl enable apache2
+        service apache2 restart
+    EOF
 }
+
+os_profile_linux_config {
+    disable_password_authentication = false
+}
+
 
 
 
