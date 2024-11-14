@@ -8,8 +8,8 @@ type    = string
    default = "Standard_B2s"
    validation {
        condition = (
-           length(var.vm_size) > 4 &&
-           substr(var.vm_size, 0, 4) == "Standard_"
+           length(var.vm_size) > 9 &&
+           substr(var.vm_size, 0, 9) == "Standard_"
        )
        error_message = "O valor deve iniciar com \"Standard_\"."
    }
