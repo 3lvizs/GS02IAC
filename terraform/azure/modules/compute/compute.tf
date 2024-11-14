@@ -60,36 +60,45 @@ resource "azurerm_virtual_machine" "vm01_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-    computer_name  = "vm01-public"
+    computer_name  = "vm04-public"
     admin_username = "azureuser"
-    admin_password = "Password1234!" 
+    admin_password = "Password1234!"
     custom_data    = <<-EOF
         #!/bin/bash
-        echo "Atualizando/Instalando pacotes necessários do sistema operacional"
-        apt-get update -y
-        apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
 
-        echo "Desplegando app PHP info"
-        cd /tmp
-        git clone https://github.com/kledsonhugo/app-dynamicsite
-        cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+        # Atualiza os pacotes e instala o Apache e o PHP
+        apt-get update
+        apt-get install -y apache2 php
 
-        echo "Configurando Apache WebServer"
-        usermod -a -G www-data ubuntu
-        chown -R ubuntu:www-data /var/www
-        chmod 2775 /var/www
-        find /var/www -type d -exec chmod 2775 {} \;
-        find /var/www -type f -exec chmod 0664 {} \;
+        # Cria um arquivo PHP para mostrar informações da máquina
+        cat <<EOF > /var/www/html/info.php
+        <?php
+        // Exibe o endereço IP da máquina
+        echo "Endereço IP: " . \$_SERVER['SERVER_ADDR'] . "<br>";
 
-        echo "Iniciando Apache WebServer"
-        systemctl enable apache2
-        service apache2 restart
+        // Exibe o nome do host
+        echo "Nome do Host: " . gethostname() . "<br>";
+
+        // Exibe informações do sistema operacional
+        echo "Sistema Operacional: " . php_uname() . "<br>";
+
+        // Exibe a versão do PHP
+        echo "Versão do PHP: " . phpversion() . "<br>";
+
+        // Mostra todas as informações do PHP
+        phpinfo();
+        ?>
+        EOF
+
+        # Reinicia o Apache para aplicar as mudanças
+        systemctl restart apache2
     EOF
 }
 
 os_profile_linux_config {
     disable_password_authentication = false
 }
+
 }
 
 #vm3 publica
@@ -133,36 +142,45 @@ resource "azurerm_virtual_machine" "vm03_public" {
         managed_disk_type = "Standard_LRS"
     }
     os_profile {
-    computer_name  = "vm03-public"
+    computer_name  = "vm04-public"
     admin_username = "azureuser"
-    admin_password = "Password1234!" 
+    admin_password = "Password1234!"
     custom_data    = <<-EOF
         #!/bin/bash
-        echo "Atualizando/Instalando pacotes necessários do sistema operacional"
-        apt-get update -y
-        apt-get install -y apache2 wget php-fpm php-mysqli php-json php php-dev telnet tree git
 
-        echo "Desplegando app PHP info"
-        cd /tmp
-        git clone https://github.com/kledsonhugo/app-dynamicsite
-        cp /tmp/app-dynamicsite/phpinfo.php /var/www/html/index.php
+        # Atualiza os pacotes e instala o Apache e o PHP
+        apt-get update
+        apt-get install -y apache2 php
 
-        echo "Configurando Apache WebServer"
-        usermod -a -G www-data ubuntu
-        chown -R ubuntu:www-data /var/www
-        chmod 2775 /var/www
-        find /var/www -type d -exec chmod 2775 {} \;
-        find /var/www -type f -exec chmod 0664 {} \;
+        # Cria um arquivo PHP para mostrar informações da máquina
+        cat <<EOF > /var/www/html/info.php
+        <?php
+        // Exibe o endereço IP da máquina
+        echo "Endereço IP: " . \$_SERVER['SERVER_ADDR'] . "<br>";
 
-        echo "Iniciando Apache WebServer"
-        systemctl enable apache2
-        service apache2 restart
+        // Exibe o nome do host
+        echo "Nome do Host: " . gethostname() . "<br>";
+
+        // Exibe informações do sistema operacional
+        echo "Sistema Operacional: " . php_uname() . "<br>";
+
+        // Exibe a versão do PHP
+        echo "Versão do PHP: " . phpversion() . "<br>";
+
+        // Mostra todas as informações do PHP
+        phpinfo();
+        ?>
+        EOF
+
+        # Reinicia o Apache para aplicar as mudanças
+        systemctl restart apache2
     EOF
 }
 
 os_profile_linux_config {
     disable_password_authentication = false
 }
+
 }
 
 
