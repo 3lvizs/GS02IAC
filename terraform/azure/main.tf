@@ -7,6 +7,7 @@ module "compute" {
   rgname = module.network.rgname
   rglocation = module.network.rglocation
   vnet = module.network.vnet
+  vm_size = "batata"
   snvnetpub1a = module.network.snvnetpub1a
   snvnetpub1b = module.network.snvnetpub1b
 }

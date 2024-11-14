@@ -15,7 +15,6 @@ resource "azurerm_subnet" "snvnetpub1a" {
     resource_group_name  = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
     address_prefixes     = ["10.0.1.0/24"]
-    availability_zone = "1"
 }
 
 resource "azurerm_subnet" "snvnetpub1b" {
@@ -23,7 +22,6 @@ resource "azurerm_subnet" "snvnetpub1b" {
     resource_group_name  = azurerm_resource_group.rg.name
     virtual_network_name = azurerm_virtual_network.vnet.name
     address_prefixes     = ["10.0.2.0/24"]
-    availability_zone = "2"
 }
 
 resource "azurerm_network_security_group" "nsgvnet" {
