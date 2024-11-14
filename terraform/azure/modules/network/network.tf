@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg" {
     name     = "rggs02"
-    location = "eastus"
+    location = "canadacentral"
 }
 
 resource "azurerm_virtual_network" "vnet" {
