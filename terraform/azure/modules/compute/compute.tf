@@ -88,8 +88,7 @@ resource "azurerm_virtual_machine" "vm01_public" {
         // Mostra todas as informações do PHP
         phpinfo();
         ?>
-        EOF
-
+        
         # Reinicia o Apache para aplicar as mudanças
         systemctl restart apache2
     EOF
@@ -170,7 +169,6 @@ resource "azurerm_virtual_machine" "vm03_public" {
         // Mostra todas as informações do PHP
         phpinfo();
         ?>
-        EOF
 
         # Reinicia o Apache para aplicar as mudanças
         systemctl restart apache2
